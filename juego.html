@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Hipertensión Arterial</title>
+    <style>
+        :root {
+            --dark-gray: #000000;
+            --teal-primary: #0a9a9e;
+            --teal-secondary: #0cb3b7;
+            --white: #ffffff;
+            --light-gray: #aaaaaa;
+            --blue: #2196F3;
+            --green: #4CAF50;
+            --yellow: #FFC107;
+            --red: #E91E63;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h1 {
+            color: var(--teal-primary);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teal-primary), var(--teal-secondary));
+            transition: width 0.3s ease;
+        }
+
+        .question-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            color: white;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .question-number {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .answer-card {
+            background-color: var(--blue);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: 3px solid transparent;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .answer-card:nth-child(1) { background-color: var(--blue); }
+        .answer-card:nth-child(2) { background-color: var(--teal-primary); }
+        .answer-card:nth-child(3) { background-color: var(--yellow); }
+        .answer-card:nth-child(4) { background-color: var(--red); }
+
+        .answer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .answer-card.selected {
+            border-color: white;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+        }
+
+        .answer-card.correct {
+            background-color: var(--green) !important;
+            animation: correctPulse 0.5s ease;
+        }
+
+        .answer-card.incorrect {
+            background-color: #dc3545 !important;
+            animation: shake 0.5s ease;
+        }
+
+        .answer-card.disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .feedback {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-secondary));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .next-btn.show {
+            display: inline-block;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(10, 154, 158, 0.4);
+        }
+
+        .results-section {
+            text-align: center;
+            display: none;
+        }
+
+        .results-section.show {
+            display: block;
+        }
+
+        .score-display {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--teal-primary);
+            margin: 20px 0;
+        }
+
+        .results-message {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--dark-gray);
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-secondary));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(10, 154, 158, 0.4);
+        }
+
+        .score-info {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 20px;
+            }
+
+            .answers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .answer-card {
+                min-height: 80px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1>🩺 Quiz de Hipertensión Arterial</h1>
+            <p class="score-info">Puntuación: <span id="score">0</span> / 5</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div id="quizContent">
+            <div class="question-section">
+                <div class="question-number">Pregunta <span id="questionNumber">1</span> de 5</div>
+                <div class="question-text" id="questionText"></div>
+            </div>
+
+            <div class="feedback" id="feedback"></div>
+
+            <div class="answers-grid" id="answersGrid"></div>
+
+            <div class="button-container">
+                <button class="next-btn" id="nextBtn">Siguiente Pregunta</button>
+            </div>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <h2 style="color: var(--teal-primary); margin-bottom: 20px;">¡Quiz Completado!</h2>
+            <div class="score-display" id="finalScore"></div>
+            <div class="results-message" id="resultsMessage"></div>
+            <button class="restart-btn" id="restartBtn">Volver a Jugar</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "¿Por qué se le conoce a la hipertensión como 'el asesino silencioso'?",
+                answers: [
+                    "Porque causa dolores intensos",
+                    "Porque no presenta síntomas evidentes",
+                    "Porque es muy rara",
+                    "Porque solo afecta de noche"
+                ],
+                correct: 1
+            },
+            {
+                question: "¿Qué valores de presión arterial se consideran normales en adultos?",
+                answers: [
+                    "Menos de 120/80 mm Hg",
+                    "130/90 mm Hg",
+                    "140/100 mm Hg",
+                    "150/95 mm Hg"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Cuál es el límite recomendado de consumo de sodio al día?",
+                answers: [
+                    "5,000 mg",
+                    "3,500 mg",
+                    "1,500-2,300 mg",
+                    "500 mg"
+                ],
+                correct: 2
+            },
+            {
+                question: "¿Cuántos minutos de ejercicio aeróbico se recomiendan la mayoría de los días?",
+                answers: [
+                    "10 minutos",
+                    "20 minutos",
+                    "30 minutos",
+                    "60 minutos"
+                ],
+                correct: 2
+            },
+            {
+                question: "¿Qué órganos pueden verse afectados por la hipertensión no controlada?",
+                answers: [
+                    "Solo el corazón",
+                    "Solo los riñones",
+                    "Corazón, cerebro y riñones",
+                    "Solo los pulmones"
+                ],
+                correct: 2
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        const questionText = document.getElementById('questionText');
+        const questionNumber = document.getElementById('questionNumber');
+        const answersGrid = document.getElementById('answersGrid');
+        const feedback = document.getElementById('feedback');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressFill = document.getElementById('progressFill');
+        const scoreDisplay = document.getElementById('score');
+        const quizContent = document.getElementById('quizContent');
+        const resultsSection = document.getElementById('resultsSection');
+        const finalScore = document.getElementById('finalScore');
+        const resultsMessage = document.getElementById('resultsMessage');
+        const restartBtn = document.getElementById('restartBtn');
+
+        function loadQuestion() {
+            answered = false;
+            const question = questions[currentQuestion];
+            
+            questionText.textContent = question.question;
+            questionNumber.textContent = currentQuestion + 1;
+            
+            answersGrid.innerHTML = '';
+            feedback.classList.remove('show', 'correct', 'incorrect');
+            nextBtn.classList.remove('show');
+            
+            question.answers.forEach((answer, index) => {
+                const card = document.createElement('div');
+                card.className = 'answer-card';
+                card.textContent = answer;
+                card.onclick = () => selectAnswer(index);
+                answersGrid.appendChild(card);
+            });
+            
+            updateProgress();
+        }
+
+        function selectAnswer(selected) {
+            if (answered) return;
+            
+            answered = true;
+            const question = questions[currentQuestion];
+            const cards = document.querySelectorAll('.answer-card');
+            
+            cards.forEach((card, index) => {
+                card.classList.add('disabled');
+                if (index === question.correct) {
+                    card.classList.add('correct');
+                }
+                if (index === selected && selected !== question.correct) {
+                    card.classList.add('incorrect');
+                }
+            });
+            
+            if (selected === question.correct) {
+                score++;
+                scoreDisplay.textContent = score;
+                feedback.textContent = '¡Correcto! 🎉';
+                feedback.classList.add('show', 'correct');
+            } else {
+                feedback.textContent = `Incorrecto. La respuesta correcta es: ${question.answers[question.correct]}`;
+                feedback.classList.add('show', 'incorrect');
+            }
+            
+            nextBtn.classList.add('show');
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            progressFill.style.width = progress + '%';
+        }
+
+        function showResults() {
+            quizContent.style.display = 'none';
+            resultsSection.classList.add('show');
+            
+            finalScore.textContent = `${score} / ${questions.length}`;
+            
+            let message = '';
+            const percentage = (score / questions.length) * 100;
+            
+            if (percentage === 100) {
+                message = '¡Perfecto! Eres un experto en hipertensión 🏆';
+            } else if (percentage >= 80) {
+                message = '¡Excelente! Tienes un gran conocimiento 🌟';
+            } else if (percentage >= 60) {
+                message = '¡Bien hecho! Buen nivel de conocimiento 👍';
+            } else {
+                message = 'Sigue aprendiendo sobre la hipertensión 📚';
+            }
+            
+            resultsMessage.textContent = message;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        });
+
+        restartBtn.addEventListener('click', () => {
+            currentQuestion = 0;
+            score = 0;
+            scoreDisplay.textContent = '0';
+            quizContent.style.display = 'block';
+            resultsSection.classList.remove('show');
+            loadQuestion();
+        });
+
+        // Cargar primera pregunta
+        loadQuestion();
+    </script>
+</body>
+</html>
