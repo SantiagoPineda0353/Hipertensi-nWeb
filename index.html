@@ -45,34 +45,30 @@
         }
 
         /* NAVBAR Y HEADER COMO UNA SOLA SECCIÓN */
-          .header-section {
+        .header-section {
             position: relative;
             min-height: 100vh;
-            color: #000; /* texto en negro como en Harvard */
+            color: #000;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-
-            /* Imagen de fondo */
             background: url("https://www.goodhope.org.pe/wp-content/uploads/2019/08/Pennsylvania-860x574-1.jpg") no-repeat center center/cover;
         }
 
-        /* Overlay estilo Harvard */
         .header-section::before {
             content: "";
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
             background: linear-gradient(
-                rgba(147, 249, 234, 0.6),   /* rojo fuerte arriba */
-                rgba(127, 178, 179, 0.3),   /* rojo suave en medio */
-                rgba(255, 255, 255, 0.9) /* casi blanco abajo */
+                rgba(147, 249, 234, 0.6),
+                rgba(127, 178, 179, 0.3),
+                rgba(255, 255, 255, 0.9)
             );
             z-index: 1;
         }
 
-        /* Aseguramos que navbar y texto estén encima del overlay */
         .header-content,
         .navbar {
             position: relative;
@@ -92,7 +88,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Estilos para la navbar cuando hace scroll */
         .navbar.scrolled {
             background-color: rgba(255, 255, 255, 0.98) !important;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -123,14 +118,12 @@
             transition: color 0.3s ease;
         }
 
-        .navbar.scrolled .site-name {
-            color: var(--dark-gray);
-        }
-
         .nav-menu {
             display: flex;
             list-style: none;
-            font-size: 1.4rem;
+            font-size: 15px;
+            
+            
         }
 
         .nav-menu li {
@@ -150,16 +143,6 @@
             color: var(--white);
         }
 
-        .navbar.scrolled .nav-menu a {
-            color: var(--dark-gray);
-        }
-
-        .navbar.scrolled .nav-menu a:hover {
-            background-color: var(--teal-primary);
-            color: var(--white);
-        }
-
-        /* CONTENIDO DEL HEADER */
         .header-content {
             position: absolute;
             top: 50%;
@@ -186,6 +169,7 @@
         /* MAIN CONTENT SECTIONS */
         .content-section {
             padding: 4rem 2rem;
+            background-color: var(--white);
         }
 
         .container {
@@ -193,52 +177,81 @@
             margin: 0 auto;
         }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .content-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-        }
-
-        .content-image {
-            width: 150px;
-            height: 120px;
-            background-color: var(--light-gray);
+        .info-box {
+            background-color: #f8f8f8;
+            padding: 2rem;
             border-radius: 8px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--teal-primary);
+        }
+
+        .info-box h2 {
+            color: var(--teal-primary);
+            margin-bottom: 1rem;
             font-size: 2rem;
-            color: var(--white);
         }
 
-        .content-text h3 {
+        .info-box h3 {
             color: var(--teal-primary);
+            margin-top: 1.5rem;
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
         }
 
-        .content-text p {
-            color: var(--dark-gray);
-            line-height: 1.6;
+        .info-box p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .info-box ul {
+            margin-left: 2rem;
             margin-bottom: 1rem;
         }
 
-        .read-more {
-            color: var(--teal-primary);
-            text-decoration: none;
+        .info-box ul li {
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .danger-box {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .classification-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .classification-table th,
+        .classification-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .classification-table th {
+            background-color: var(--teal-primary);
+            color: white;
             font-weight: bold;
         }
 
-        .read-more:hover {
-            color: var(--teal-secondary);
+        .classification-table tr:hover {
+            background-color: #f5f5f5;
         }
 
         /* PREVENTION SECTION */
@@ -265,24 +278,12 @@
             background-color: rgba(255, 255, 255, 0.1);
             padding: 2rem;
             border-radius: 8px;
-            text-align: center;
-        }
-
-        .prevention-card .icon {
-            width: 80px;
-            height: 80px;
-            background-color: var(--teal-primary);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
         }
 
         .prevention-card h3 {
             margin-bottom: 1rem;
             color: var(--white);
+            font-size: 1.3rem;
         }
 
         .prevention-card p {
@@ -290,76 +291,48 @@
             line-height: 1.6;
         }
 
-        /* BREAKTHROUGH SECTION */
-        .breakthrough-section {
-            padding: 4rem 2rem;
-            background-color: var(--white);
-        }
-
-        .breakthrough-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .breakthrough-image {
-            width: 100%;
-            height: 300px;
-            background-color: var(--light-gray);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--white);
-        }
-
-        .breakthrough-text h2 {
-            color: var(--teal-primary);
+        .prevention-card .number {
             font-size: 2rem;
-            margin-bottom: 1rem;
+            font-weight: bold;
+            color: var(--teal-primary);
+            margin-bottom: 0.5rem;
         }
 
-        .breakthrough-text p {
-            margin-bottom: 1rem;
-            color: var(--dark-gray);
-        }
-
-        /* CENTERS SECTION */
-        .centers-section {
+        /* MEDICATION SECTION */
+        .medication-section {
+            padding: 4rem 2rem;
             background-color: #f8f8f8;
-            padding: 4rem 2rem;
         }
 
-        .centers-section h2 {
-            color: var(--teal-primary);
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .centers-grid {
+        .medication-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            margin-top: 2rem;
         }
 
-        .centers-list {
-            list-style: none;
+        .medication-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--teal-primary);
         }
 
-        .centers-list li {
+        .medication-card h3 {
+            color: var(--teal-primary);
             margin-bottom: 1rem;
         }
 
-        .centers-list a {
-            color: var(--teal-primary);
-            text-decoration: none;
+        .medication-card p {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
         }
 
-        .centers-list a:hover {
-            color: var(--teal-secondary);
-            text-decoration: underline;
+        .medication-card .examples {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9rem;
         }
 
         /* FOOTER */
@@ -377,24 +350,20 @@
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .nav-menu {
-                display: none; /* Simplificado para móvil */
+                display: none;
             }
 
             .header-section h1 {
                 font-size: 2rem;
             }
 
-            .content-card {
-                flex-direction: column;
-                text-align: center;
+            .classification-table {
+                font-size: 0.9rem;
             }
 
-            .breakthrough-content {
-                grid-template-columns: 1fr;
-            }
-
-            .centers-grid {
-                grid-template-columns: 1fr;
+            .classification-table th,
+            .classification-table td {
+                padding: 0.5rem;
             }
         }
     </style>
@@ -402,172 +371,249 @@
 <body>
     <!-- SECCIÓN HEADER CON NAVBAR INTEGRADA -->
     <section id="inicio" class="header-section">
-        <!-- NAVEGACIÓN -->
         <nav class="navbar">
             <div class="logo-section">
-                <!-- Cambia este div por tu logo -->
                 <div class="logo">CM</div>
-                <!-- Cambia este texto por el nombre de tu institución -->
                 <span class="site-name">Centro Médico</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#informacion">Información</a></li>
+                <li><a href="#que-es">¿Qué es?</a></li>
+                <li><a href="#clasificacion">Clasificación</a></li>
+                <li><a href="#peligros">Peligros</a></li>
+                <li><a href="#factores">Factores de Riesgo</a></li>
                 <li><a href="#prevencion">Prevención</a></li>
-                <li><a href="#avances">Avances</a></li>
-                <li><a href="#centros">Centros</a></li>
+                <li><a href="#medicamentos">Medicamentos</a></li>
             </ul>
         </nav>
 
-        <!-- CONTENIDO PRINCIPAL DEL HEADER -->
         <div class="header-content">
-            <!-- Edita este título principal -->
             <h1>Hipertensión Arterial</h1>
-            <!-- Edita esta descripción principal -->
-            <p>La hipertensión arterial es una de las principales causas de muerte cardiovascular. Nuestros expertos se dedican a brindar la más alta calidad en prevención, diagnóstico y tratamiento.</p>
+            <p>El asesino silencioso que afecta a millones. Conoce cómo prevenirla, detectarla y controlarla efectivamente.</p>
         </div>
     </section>
 
-    <!-- SECCIÓN DE INFORMACIÓN PRINCIPAL -->
-    <section id="informacion" class="content-section">
+    <!-- SECCIÓN: ¿QUÉ ES LA HIPERTENSIÓN? -->
+    <section id="que-es" class="content-section">
         <div class="container">
-            <div class="content-grid">
-                <!-- TARJETA 1 - Editable -->
-                <div class="content-card">
-                    <!-- Cambia este ícono por una imagen real -->
-                    <div class="content-image">🩺</div>
-                    <div class="content-text">
-                        <!-- Edita este título -->
-                        <h3>¿Estás en riesgo de hipertensión?</h3>
-                        <!-- Edita este texto -->
-                        <p>Conoce los factores de riesgo de la hipertensión arterial. La detección temprana es clave para prevenir complicaciones cardiovasculares graves.</p>
-                        <a href="#" class="read-more">Evalúa tu riesgo →</a>
-                    </div>
-                </div>
-
-                <!-- TARJETA 2 - Editable -->
-                <div class="content-card">
-                    <!-- Cambia este ícono por una imagen real -->
-                    <div class="content-image">📊</div>
-                    <div class="content-text">
-                        <!-- Edita este título -->
-                        <h3>El declive de muertes por hipertensión se ha desacelerado. ¿Por qué?</h3>
-                        <!-- Edita este texto -->
-                        <p>Los expertos analizan las nuevas tendencias en mortalidad por hipertensión y las estrategias necesarias para revertir esta situación.</p>
-                        <a href="#" class="read-more">Conoce más sobre las estadísticas →</a>
-                    </div>
-                </div>
-
-                <!-- TARJETA 3 - Editable -->
-                <div class="content-card">
-                    <!-- Cambia este ícono por una imagen real -->
-                    <div class="content-image">👨‍⚕️</div>
-                    <div class="content-text">
-                        <!-- Edita este título -->
-                        <h3>¿Qué hace que los pacientes sean descuidados con la hipertensión?</h3>
-                        <!-- Edita este texto -->
-                        <p>Según los expertos, la falta de síntomas hace que muchos pacientes no tomen en serio su tratamiento antihipertensivo.</p>
-                        <a href="#" class="read-more">Lee por qué la adherencia es crucial →</a>
-                    </div>
+            <div class="info-box">
+                <h2>¿Qué es la Hipertensión Arterial?</h2>
+                <p>La hipertensión arterial (HTA) es una enfermedad que se caracteriza por una elevación continua y anormal de la presión en las arterias. Se le conoce comúnmente como <strong>"el asesino silencioso"</strong> porque la mayoría de las personas no experimentan síntomas evidentes, lo que permite que la enfermedad progrese sin ser detectada y cause daños graves en órganos vitales.</p>
+                
+                <h3>¿Cómo se mide la presión arterial?</h3>
+                <p>La presión arterial se mide con dos valores en milímetros de mercurio (mm Hg):</p>
+                <ul>
+                    <li><strong>Presión Sistólica (el número superior):</strong> Mide la presión cuando el corazón late y bombea sangre.</li>
+                    <li><strong>Presión Diastólica (el número inferior):</strong> Mide la presión en las arterias cuando el corazón está en reposo entre latidos.</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <p><strong>⚠️ Importante:</strong> Un diagnóstico de hipertensión requiere mediciones repetidas, ya que la presión puede variar a lo largo del día.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN DE PREVENCIÓN -->
+    <!-- SECCIÓN: CLASIFICACIÓN -->
+    <section id="clasificacion" class="content-section" style="background-color: #f8f8f8;">
+        <div class="container">
+            <h2 style="color: var(--teal-primary); margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">Clasificación de la Presión Arterial en Adultos</h2>
+            
+            <table class="classification-table">
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Presión Sistólica</th>
+                        <th>Presión Diastólica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Normal</strong></td>
+                        <td>Menos de 120 mm Hg</td>
+                        <td>Menos de 80 mm Hg</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Elevada</strong></td>
+                        <td>120-129 mm Hg</td>
+                        <td>Menor de 80 mm Hg</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hipertensión Fase 1</strong></td>
+                        <td>130-139 mm Hg</td>
+                        <td>80-89 mm Hg</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hipertensión Fase 2</strong></td>
+                        <td>140 mm Hg o superior</td>
+                        <td>90 mm Hg o superior</td>
+                    </tr>
+                    <tr style="background-color: #f8d7da;">
+                        <td><strong>Emergencia Hipertensiva</strong></td>
+                        <td colspan="2">Superior a 180/120 mm Hg</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="danger-box">
+                <p><strong>🚨 EMERGENCIA MÉDICA:</strong> Si tu presión supera 180/120 mm Hg, especialmente si se acompaña de síntomas como dolor de pecho, dificultad para respirar, dolor de espalda, cambios en la visión o dificultad para hablar, llama a emergencias inmediatamente.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: ¿POR QUÉ ES PELIGROSA? -->
+    <section id="peligros" class="content-section">
+        <div class="container">
+            <div class="info-box">
+                <h2>¿Por qué es peligrosa la Hipertensión?</h2>
+                <p>La hipertensión no controlada es una de las principales causas de muerte prematura en el mundo y aumenta significativamente el riesgo de:</p>
+                
+                <h3>💔 Enfermedades del corazón</h3>
+                <p>Obliga al corazón a trabajar más, lo que puede provocar engrosamiento de sus paredes (hipertrofia), insuficiencia cardíaca o un infarto de miocardio.</p>
+                
+                <h3>🧠 Accidentes cerebrovasculares (ictus)</h3>
+                <p>El daño en los vasos sanguíneos del cerebro aumenta el riesgo de ictus, tanto por falta de riego (isquémico) como por rotura de una arteria (hemorrágico).</p>
+                
+                <h3>🫘 Enfermedad renal crónica</h3>
+                <p>Daña los vasos sanguíneos de los riñones, afectando su capacidad para filtrar desechos y pudiendo llevar a insuficiencia renal.</p>
+                
+                <h3>⚠️ Otros problemas</h3>
+                <p>Puede causar demencia vascular, problemas de visión al dañar las arterias de la retina e impotencia en los hombres.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: FACTORES DE RIESGO -->
+    <section id="factores" class="content-section" style="background-color: #f8f8f8;">
+        <div class="container">
+            <h2 style="color: var(--teal-primary); margin-bottom: 2rem; font-size: 2.5rem;">Causas y Factores de Riesgo</h2>
+            
+            <div class="info-box">
+                <p>En la mayoría de los casos (alrededor del 85%), no se identifica una causa específica, lo que se denomina <strong>hipertensión primaria</strong>. Sin embargo, existen varios factores de riesgo que contribuyen a su desarrollo:</p>
+                
+                <ul>
+                    <li><strong>Edad:</strong> El riesgo aumenta con la edad, ya que las arterias se vuelven más rígidas.</li>
+                    <li><strong>Genética:</strong> Tener antecedentes familiares de hipertensión aumenta la probabilidad.</li>
+                    <li><strong>Sobrepeso y obesidad:</strong> El exceso de peso, especialmente alrededor de la cintura, obliga al corazón a trabajar más.</li>
+                    <li><strong>Sedentarismo:</strong> La falta de actividad física regular facilita que la presión suba.</li>
+                    <li><strong>Dieta inadecuada:</strong> Un alto consumo de sal (sodio) y grasas, y bajo consumo de potasio (presente en frutas y verduras).</li>
+                    <li><strong>Consumo de alcohol y tabaco:</strong> Fumar aumenta la presión arterial de inmediato y daña los vasos sanguíneos a largo plazo. El exceso de alcohol también eleva la presión.</li>
+                    <li><strong>Estrés crónico:</strong> Puede contribuir a la presión arterial alta.</li>
+                    <li><strong>Otras enfermedades:</strong> La diabetes, el colesterol alto, la apnea del sueño y las enfermedades renales están asociadas a la hipertensión.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: 10 CAMBIOS CLAVE -->
     <section id="prevencion" class="prevention-section">
         <div class="container">
-            <!-- Edita este título -->
-            <h2>La prevención es clave para controlar la hipertensión</h2>
+            <h2>10 Cambios Clave en el Estilo de Vida para Controlar la Hipertensión</h2>
             
             <div class="prevention-grid">
-                <!-- TARJETA PREVENCIÓN 1 - Editable -->
                 <div class="prevention-card">
-                    <div class="icon">🥗</div>
-                    <!-- Edita este título -->
-                    <h3>Mantén una dieta saludable</h3>
-                    <!-- Edita este texto -->
-                    <p>Reduce el consumo de sodio, aumenta frutas y verduras, y mantén un peso saludable para controlar la presión arterial.</p>
+                    <div class="number">1</div>
+                    <h3>Mantén un peso saludable</h3>
+                    <p>Perder incluso una pequeña cantidad de peso puede reducir la presión arterial. En general, por cada kilo de peso perdido, la presión puede bajar aproximadamente 1 mm Hg.</p>
                 </div>
 
-                <!-- TARJETA PREVENCIÓN 2 - Editable -->
                 <div class="prevention-card">
-                    <div class="icon">🏃‍♂️</div>
-                    <!-- Edita este título -->
-                    <h3>Mantente activo</h3>
-                    <!-- Edita este texto -->
-                    <p>El ejercicio regular ayuda a fortalecer el corazón y reducir la presión arterial. 30 minutos diarios marcan la diferencia.</p>
+                    <div class="number">2</div>
+                    <h3>Haz ejercicio regularmente</h3>
+                    <p>Al menos 30 minutos de actividad aeróbica moderada (caminar, nadar, andar en bicicleta) la mayoría de los días puede reducir la presión entre 5 y 8 mm Hg. Los ejercicios de fortalecimiento también son beneficiosos.</p>
                 </div>
 
-                <!-- TARJETA PREVENCIÓN 3 - Editable -->
                 <div class="prevention-card">
-                    <div class="icon">🚭</div>
-                    <!-- Edita este título -->
-                    <h3>Evita el sedentarismo</h3>
-                    <!-- Edita este texto -->
-                    <p>Mantén un estilo de vida activo y evita hábitos nocivos como fumar o el consumo excesivo de alcohol.</p>
+                    <div class="number">3</div>
+                    <h3>Lleva una dieta saludable</h3>
+                    <p>Dietas como la DASH o la Mediterránea, ricas en frutas, verduras, granos integrales y lácteos bajos en grasa, pueden disminuir la presión arterial hasta en 11 mm Hg.</p>
                 </div>
 
-                <!-- TARJETA PREVENCIÓN 4 - Editable -->
                 <div class="prevention-card">
-                    <div class="icon">😌</div>
-                    <!-- Edita este título -->
-                    <h3>Reduce el estrés</h3>
-                    <!-- Edita este texto -->
-                    <p>Practica técnicas de relajación y manejo del estrés. El estrés crónico puede contribuir al desarrollo de hipertensión.</p>
+                    <div class="number">4</div>
+                    <h3>Reduce la sal (sodio)</h3>
+                    <p>Limita el sodio a menos de 1,500-2,300 mg al día. La mayor parte del sodio proviene de alimentos procesados.</p>
                 </div>
 
-                <!-- TARJETA PREVENCIÓN 5 - Editable -->
                 <div class="prevention-card">
-                    <div class="icon">🧂</div>
-                    <!-- Edita este título -->
-                    <h3>Reduce el consumo de sal</h3>
-                    <!-- Edita este texto -->
-                    <p>Limita el sodio en tu dieta. Una reducción significativa puede disminuir considerablemente la presión arterial.</p>
+                    <div class="number">5</div>
+                    <h3>Limita el alcohol</h3>
+                    <p>No más de una copa al día para las mujeres y dos para los hombres.</p>
                 </div>
 
-                <!-- TARJETA PREVENCIÓN 6 - Editable -->
                 <div class="prevention-card">
-                    <div class="icon">💊</div>
-                    <!-- Edita este título -->
-                    <h3>Toma ventaja de nuevas tecnologías</h3>
-                    <!-- Edita este texto -->
-                    <p>Utiliza monitores digitales y aplicaciones móviles para hacer seguimiento constante de tu presión arterial.</p>
+                    <div class="number">6</div>
+                    <h3>Deja de fumar</h3>
+                    <p>Fumar eleva la presión arterial. Dejarlo tiene beneficios inmediatos para la salud cardiovascular.</p>
+                </div>
+
+                <div class="prevention-card">
+                    <div class="number">7</div>
+                    <h3>Duerme bien</h3>
+                    <p>Intenta dormir entre 7 y 9 horas por noche. Problemas como la apnea del sueño pueden empeorar la hipertensión.</p>
+                </div>
+
+                <div class="prevention-card">
+                    <div class="number">8</div>
+                    <h3>Maneja el estrés</h3>
+                    <p>Practica técnicas de relajación, respiración, yoga o dedica tiempo a pasatiempos que disfrutes.</p>
+                </div>
+
+                <div class="prevention-card">
+                    <div class="number">9</div>
+                    <h3>Contrólate la presión en casa</h3>
+                    <p>Usar un tensiómetro casero ayuda a verificar si el tratamiento está funcionando.</p>
+                </div>
+
+                <div class="prevention-card">
+                    <div class="number">10</div>
+                    <h3>Busca apoyo</h3>
+                    <p>Familiares, amigos o grupos de apoyo pueden ayudarte a mantener la motivación para seguir cuidándote.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN DE AVANCES -->
-    <section id="avances" class="breakthrough-section">
+    <!-- SECCIÓN: MEDICAMENTOS -->
+    <section id="medicamentos" class="medication-section">
         <div class="container">
-            <!-- Edita este título -->
-            <h2>Avances en Hipertensión</h2>
+            <h2 style="color: var(--teal-primary); margin-bottom: 1rem; font-size: 2.5rem;">Tratamiento con Medicamentos</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.1rem;">Cuando los cambios en el estilo de vida no son suficientes, el médico puede recetar medicamentos antihipertensivos. El objetivo del tratamiento suele ser reducir la presión por debajo de 130/80 mm Hg.</p>
             
-            <div class="breakthrough-content">
-                <!-- Cambia este div por una imagen real -->
-                <div class="breakthrough-image">💉</div>
-                <div class="breakthrough-text">
-                    <!-- Edita este título -->
-                    <h2>Nuevo estudio sugiere que los medicamentos para pérdida de peso pueden proteger a pacientes hipertensos</h2>
-                    <!-- Edita este texto -->
-                    <p>Investigadores han encontrado que ciertos medicamentos para la pérdida de peso muestran beneficios adicionales en el control de la presión arterial.</p>
-                    <p>Los resultados preliminares indican una reducción significativa en los eventos cardiovasculares en pacientes que combinan estos tratamientos.</p>
-                    <a href="#" class="read-more">Leer más sobre este avance →</a>
+            <div class="medication-grid">
+                <div class="medication-card">
+                    <h3>💧 Diuréticos</h3>
+                    <p>Ayudan al cuerpo a eliminar el exceso de agua y sodio.</p>
+                    <p class="examples">Ejemplos: hidroclorotiazida, clortalidona</p>
+                </div>
+
+                <div class="medication-card">
+                    <h3>🔄 IECA</h3>
+                    <p>Inhibidores de la enzima convertidora de angiotensina. Relajan los vasos sanguíneos al evitar la formación de una sustancia que los estrecha.</p>
+                    <p class="examples">Ejemplos: enalapril, lisinopril</p>
+                </div>
+
+                <div class="medication-card">
+                    <h3>🛡️ ARA II</h3>
+                    <p>Antagonistas de los receptores de angiotensina II. Bloquean la acción de la angiotensina, cumpliendo una función similar a los IECA.</p>
+                    <p class="examples">Ejemplos: losartán, valsartán</p>
+                </div>
+
+                <div class="medication-card">
+                    <h3>⚡ Bloqueadores de los canales de calcio</h3>
+                    <p>Relajan las arterias impidiendo la entrada de calcio en sus células musculares.</p>
+                    <p class="examples">Ejemplos: amlodipino, nifedipino</p>
+                </div>
+
+                <div class="medication-card">
+                    <h3>❤️ Bloqueadores beta</h3>
+                    <p>Hacen que el corazón lata más despacio y con menos fuerza, reduciendo la presión.</p>
+                    <p class="examples">Ejemplos: metoprolol, carvedilol</p>
                 </div>
             </div>
 
-            <div style="margin-top: 4rem;">
-                <!-- Edita este subtítulo -->
-                <h3 style="color: var(--teal-primary); margin-bottom: 2rem;">Medicina Personalizada</h3>
-                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: center;">
-                    <div>
-                        <!-- Edita este texto -->
-                        <p>El desarrollo de tratamientos personalizados basados en el perfil genético del paciente está revolucionando el manejo de la hipertensión, permitiendo terapias más efectivas y con menos efectos secundarios.</p>
-                    </div>
-                    <!-- Cambia este div por una imagen real -->
-                    <div style="width: 100%; height: 200px; background-color: var(--light-gray); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white;">🧬</div>
-                </div>
+            <div class="warning-box" style="margin-top: 3rem;">
+                <p><strong>⚠️ Importante:</strong> A menudo, se combinan dos fármacos en una sola pastilla para facilitar el cumplimiento del tratamiento. Es fundamental no abandonar la medicación sin consultar al médico, incluso si la presión se normaliza.</p>
             </div>
         </div>
     </section>
@@ -575,30 +621,6 @@
     <!-- SECCIÓN DE CENTROS -->
     <section id="centros" class="centers-section">
         <div class="container">
-            <!-- Edita este título -->
-            <h2>Centros e Institutos</h2>
-            
-            <div class="centers-grid">
-                <div>
-                    <!-- Edita estos enlaces y nombres -->
-                    <ul class="centers-list">
-                        <li><a href="#">Centro de Investigación Cardiovascular</a></li>
-                        <li><a href="#">Instituto de Hipertensión y Cardiología</a></li>
-                        <li><a href="#">Centro de Prevención de Enfermedades del Corazón</a></li>
-                        <li><a href="#">Clínica de Hipertensión Especializada</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <!-- Edita estos enlaces y nombres -->
-                    <ul class="centers-list">
-                        <li><a href="#">Programa de Medicina Cardiovascular</a></li>
-                        <li><a href="#">Centro de Cardiología Preventiva</a></li>
-                        <li><a href="#">Instituto de Investigación en Hipertensión</a></li>
-                        <li><a href="#">Clínica de Trastornos Cardiovasculares</a></li>
-                    </ul>
-                </div>
-            </div>
-
             <div style="margin-top: 3rem; padding: 2rem; background-color: white; border-radius: 8px;">
                 <!-- Edita este título -->
                 <h3 style="color: var(--teal-primary); margin-bottom: 1rem;">Temas Relacionados en Foco</h3>
@@ -615,9 +637,8 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <!-- Edita esta información de contacto -->
         <p>&copy; 2024 Centro Médico. Todos los derechos reservados.</p>
-        <p>Información de contacto y redes sociales aquí</p>
+        <p>La información proporcionada es con fines educativos. Consulte siempre a su médico.</p>
     </footer>
 
     <script>
@@ -635,7 +656,7 @@
             });
         });
 
-        // EFECTO DE SCROLL EN NAVBAR - Navbar con fondo blanco cuando se hace scroll
+        // EFECTO DE SCROLL EN NAVBAR
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > window.innerHeight - 100) {
