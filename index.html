@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro Médico - Hipertensión</title>
+    <title>Hipertensión</title>
     <style>
         /* COLORES DEFINIDOS */
         :root {
@@ -122,8 +122,6 @@
             display: flex;
             list-style: none;
             font-size: 15px;
-            
-            
         }
 
         .nav-menu li {
@@ -347,14 +345,71 @@
             margin-bottom: 0.5rem;
         }
 
-        /* RESPONSIVE */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark-gray);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 1024px) {
+            .header-section h1 {
+                font-size: 5rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
             .nav-menu {
-                display: none;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                margin: 1.5rem 0;
+            }
+
+            .nav-menu a {
+                font-size: 1.2rem;
+                padding: 0.8rem 1.5rem;
             }
 
             .header-section h1 {
-                font-size: 2rem;
+                font-size: 3rem;
+            }
+
+            .header-section p {
+                font-size: 1rem;
+            }
+
+            .header-content {
+                padding: 0 1rem;
             }
 
             .classification-table {
@@ -365,27 +420,82 @@
             .classification-table td {
                 padding: 0.5rem;
             }
+
+            .content-section, 
+            .prevention-section, 
+            .medication-section {
+                padding: 2rem 1rem;
+            }
+
+            .info-box {
+                padding: 1.5rem;
+            }
+
+            .prevention-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .medication-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .header-section p {
+                font-size: 0.9rem;
+            }
+
+            .navbar {
+                padding: 1rem;
+            }
+
+            .site-name {
+                font-size: 1.2rem;
+            }
+
+            .info-box h2 {
+                font-size: 1.5rem;
+            }
+
+            .prevention-section h2,
+            .medication-section h2 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- SECCIÓN HEADER CON NAVBAR INTEGRADA -->
+  
     <section id="inicio" class="header-section">
         <nav class="navbar">
             <div class="logo-section">
-                <div class="logo">CM</div>
-                <span class="site-name">Centro Médico</span>
+                <div class="logo" >
+                    <img src="https://aulavirtual.unbosque.edu.co/pluginfile.php/346358/course/overviewfiles/Logo_de_la_Universidad_El_Bosque.svg.png" alt="Universidad El Bosque" width="150" height="50" title="Logo Logo_de_la_Universidad_El_Bosque">
+                </div>
+                <span class="site-name">Hipertensión</span>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#que-es">¿Qué es?</a></li>
-                <li><a href="#clasificacion">Clasificación</a></li>
-                <li><a href="#peligros">Peligros</a></li>
-                <li><a href="#factores">Factores de Riesgo</a></li>
-                <li><a href="#prevencion">Prevención</a></li>
-                <li><a href="#medicamentos">Medicamentos</a></li>
-                <li><a href="/Hipertensi-nWeb//juego.html">Juego</a></li>
-
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#que-es" class="nav-link">¿Qué es?</a></li>
+                <li><a href="#clasificacion" class="nav-link">Clasificación</a></li>
+                <li><a href="#peligros" class="nav-link">Peligros</a></li>
+                <li><a href="#factores" class="nav-link">Factores de Riesgo</a></li>
+                <li><a href="#prevencion" class="nav-link">Prevención</a></li>
+                <li><a href="#medicamentos" class="nav-link">Medicamentos</a></li>
+                <li><a href="/Hipertensi-nWeb//juego.html" class="nav-link">Juego</a></li>
             </ul>
         </nav>
 
@@ -395,7 +505,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: ¿QUÉ ES LA HIPERTENSIÓN? -->
     <section id="que-es" class="content-section">
         <div class="container">
             <div class="info-box">
@@ -416,7 +525,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: CLASIFICACIÓN -->
     <section id="clasificacion" class="content-section" style="background-color: #f8f8f8;">
         <div class="container">
             <h2 style="color: var(--teal-primary); margin-bottom: 2rem; font-size: 2.5rem; text-align: center;">Clasificación de la Presión Arterial en Adultos</h2>
@@ -463,7 +571,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: ¿POR QUÉ ES PELIGROSA? -->
     <section id="peligros" class="content-section">
         <div class="container">
             <div class="info-box">
@@ -485,7 +592,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: FACTORES DE RIESGO -->
+
     <section id="factores" class="content-section" style="background-color: #f8f8f8;">
         <div class="container">
             <h2 style="color: var(--teal-primary); margin-bottom: 2rem; font-size: 2.5rem;">Causas y Factores de Riesgo</h2>
@@ -507,7 +614,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: 10 CAMBIOS CLAVE -->
+
     <section id="prevencion" class="prevention-section">
         <div class="container">
             <h2>10 Cambios Clave en el Estilo de Vida para Controlar la Hipertensión</h2>
@@ -576,7 +683,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: MEDICAMENTOS -->
+    
     <section id="medicamentos" class="medication-section">
         <div class="container">
             <h2 style="color: var(--teal-primary); margin-bottom: 1rem; font-size: 2.5rem;">Tratamiento con Medicamentos</h2>
@@ -620,15 +727,15 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE CENTROS -->
+    
     <section id="centros" class="centers-section">
         <div class="container">
             <div style="margin-top: 3rem; padding: 2rem; background-color: white; border-radius: 8px;">
-                <!-- Edita este título -->
-                <h3 style="color: var(--teal-primary); margin-bottom: 1rem;">Temas Relacionados en Foco</h3>
+                
+                <h3 style="color: var(--teal-primary); margin-bottom: 1rem;">Referencias</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                    <!-- Edita estos enlaces -->
-                    <a href="#" style="color: var(--teal-primary); text-decoration: none;">Enfermedades Cardiovasculares</a>
+                   
+                    <a href="https://blog.laboratorioslegrand.com/medicamentos-antihipertensivos#:~:text=Bloqueadores%20de%20los%20canales%20de%20calcio%20(BCC),los%20dihidropirid%C3%ADnicos%20que%20en%20los%20no%20dihidropirid%C3%ADnicos." style="color: var(--teal-primary); text-decoration: none;">¿Qué hacen los medicamentos antihipertensivos?</a>
                     <a href="#" style="color: var(--teal-primary); text-decoration: none;">Diabetes</a>
                     <a href="#" style="color: var(--teal-primary); text-decoration: none;">Obesidad</a>
                     <a href="#" style="color: var(--teal-primary); text-decoration: none;">El Corazón Saludable</a>
@@ -637,14 +744,13 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+   
     <footer class="footer">
-        <p>&copy; 2024 Centro Médico. Todos los derechos reservados.</p>
-        <p>La información proporcionada es con fines educativos. Consulte siempre a su médico.</p>
+        <p>&copy; 2025 Universidad El Bosque.</p>
     </footer>
 
     <script>
-        // NAVEGACIÓN SUAVE
+       
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -658,7 +764,7 @@
             });
         });
 
-        // EFECTO DE SCROLL EN NAVBAR
+        
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > window.innerHeight - 100) {
@@ -669,6 +775,35 @@
                 navbar.style.position = 'absolute';
                 navbar.style.top = '0';
                 navbar.classList.remove('scrolled');
+            }
+        });
+
+       
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+       
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = navMenu.contains(event.target);
+            const isClickInsideHamburger = hamburger.contains(event.target);
+            
+            if (!isClickInsideNav && !isClickInsideHamburger && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
             }
         });
     </script>
